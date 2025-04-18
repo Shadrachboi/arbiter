@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbiter #1 - A Pulse-Pounding Supernatural Comic</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4F46E5',secondary:'#9333EA'},borderRadius:{'none':'0px','sm':'8px',DEFAULT:'12px','md':'16px','lg':'20px','xl':'24px','2xl':'28px','3xl':'32px','full':'9999px','button':'12px'}}}}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            background-color: #0f0f14;
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .hero-glow {
+            text-shadow: 0 0 15px rgba(79, 70, 229, 0.7), 0 0 30px rgba(79, 70, 229, 0.4);
+        }
+        .title-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+        }
+        .glow-button {
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.7);
+            transition: all 0.3s ease;
+        }
+        .glow-button:hover {
+            box-shadow: 0 0 25px rgba(79, 70, 229, 0.9);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+            }
+        }
+        .crack-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='smallGrid' width='10' height='10' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 10 0 L 0 0 0 10' fill='none' stroke='rgba(79, 70, 229, 0.1)' stroke-width='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23smallGrid)'/%3E%3C/svg%3E");
+        }
+        .tier-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(79, 70, 229, 0.3);
+        }
+        .tier-card:hover {
+            transform: translateY(-5px);
+            border: 1px solid rgba(79, 70, 229, 0.8);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #4F46E5;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+        .comic-preview {
+            position: relative;
+            overflow: hidden;
+        }
+        .comic-preview img {
+            transition: transform 0.5s ease;
+        }
+        .comic-preview:hover img {
+            transform: scale(1.05);
+        }
+        .countdown-item {
+            background: rgba(15, 15, 20, 0.8);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            box-shadow: 0 0 10px rgba(79, 70, 229, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-gradient-to-r from-[#0f0f14] to-[#131320] border-b border-primary/20">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="title-font text-2xl font-bold text-white flex items-center">
+                <span class="text-primary hero-glow">ARBITER</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-gray-300 hover:text-primary transition-colors">About</a>
+                <a href="#preview" class="text-gray-300 hover:text-primary transition-colors">Preview</a>
+                <a href="#creator" class="text-gray-300 hover:text-primary transition-colors">Creator</a>
+                <a href="#support" class="text-gray-300 hover:text-primary transition-colors">Support</a>
+                <a href="#lore" class="text-gray-300 hover:text-primary transition-colors">Lore</a>
+            </div>
+            <button class="bg-primary text-white px-6 py-2 !rounded-button glow-button whitespace-nowrap">Back the Comic</button>
+            <div class="md:hidden w-10 h-10 flex items-center justify-center">
+                <i class="ri-menu-line ri-lg text-white"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-20 overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=dark%20cosmic%20background%20with%20glowing%20blue%20energy%20cracks%2C%20mysterious%20supernatural%20atmosphere%2C%20dark%20comic%20book%20style%20with%20dramatic%20lighting%2C%20high%20contrast%2C%20detailed%20illustration&width=1920&height=1080&seq=1&orientation=landscape'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#0f0f14]/90 to-[#0f0f14]/60"></div>
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                    <h1 class="title-font text-5xl md:text-7xl font-bold mb-4 hero-glow">
+                        <span class="text-white">ARBITER</span>
+                        <span class="text-primary">#1</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-300">A Pulse-Pounding Supernatural Comic</p>
+                    <p class="text-lg md:text-xl mb-10 text-gray-400 italic">Born of light. Hunted by shadows.</p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-6">
+                        <button class="bg-primary text-white px-8 py-4 !rounded-button glow-button pulse-animation text-lg font-bold whitespace-nowrap">
+                            Back the Comic
+                        </button>
+                        <button class="bg-transparent border border-primary/50 text-primary px-8 py-4 !rounded-button hover:bg-primary/10 transition-colors text-lg font-bold whitespace-nowrap">
+                            Watch Trailer
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <img src="https://readdy.ai/api/search-image?query=superhero%20figure%20with%20glowing%20blue%20energy%20emanating%20from%20his%20body%2C%20standing%20in%20a%20dramatic%20pose%2C%20cosmic%20background%20with%20reality%20cracks%2C%20dark%20atmospheric%20lighting%2C%20comic%20book%20cover%20style%2C%20highly%20detailed%20illustration&width=600&height=800&seq=2&orientation=portrait" alt="Arbiter Comic Cover" class="rounded-lg shadow-2xl glow-border max-w-full h-auto">
+                        <div class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-md">
+                            <div class="bg-[#0f0f14]/80 backdrop-blur-sm rounded-lg p-4 border border-primary/30">
+                                <div class="flex justify-between items-center">
+                                    <div class="text-center">
+                                        <div class="countdown-item w-16 h-16 flex flex-col items-center justify-center rounded-lg">
+                                            <span class="text-xl font-bold text-primary">29</span>
+                                            <span class="text-xs text-gray-400">Days</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="countdown-item w-16 h-16 flex flex-col items-center justify-center rounded-lg">
+                                            <span class="text-xl font-bold text-primary">12</span>
+                                            <span class="text-xs text-gray-400">Hours</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="countdown-item w-16 h-16 flex flex-col items-center justify-center rounded-lg">
+                                            <span class="text-xl font-bold text-primary">45</span>
+                                            <span class="text-xs text-gray-400">Minutes</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="countdown-item w-16 h-16 flex flex-col items-center justify-center rounded-lg">
+                                            <span class="text-xl font-bold text-primary">33</span>
+                                            <span class="text-xs text-gray-400">Seconds</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-center text-gray-400 mt-3 text-sm">Campaign ends May 18, 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About the Comic -->
+    <section id="about" class="py-20 bg-[#0f0f14] crack-overlay">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl font-bold mb-4">About the Comic</h2>
+                <div class="w-24 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/2 mb-10 md:mb-0 pr-0 md:pr-10">
+                    <h3 class="title-font text-2xl font-bold mb-6 text-primary">The Story</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Meet Chris, a man born with extraordinary powers he doesn't fully understand. Chosen by cosmic forces to seal dangerous rifts in reality, he stands as the last defense against invading creatures from beyond our dimension.
+                    </p>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        His journey begins after the mysterious disappearance of his adoptive father, setting him on a path to discover his true purpose as an Arbiter – a guardian of our reality. But as Chris embraces his destiny, he finds himself hunted by shadowy forces that want him eliminated.
+                    </p>
+                    
+                    <div class="p-6 border border-primary/30 rounded-lg bg-[#131320] mb-8">
+                        <p class="text-xl italic text-gray-200">
+                            "One man's destiny, the world's last defense."
+                        </p>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="flex-1 h-1 bg-gray-700"></div>
+                        <p class="px-4 text-gray-400 text-sm">22 Pages of Action-Packed Adventure</p>
+                        <div class="flex-1 h-1 bg-gray-700"></div>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-1/2">
+                    <div class="relative comic-preview rounded-lg overflow-hidden glow-border">
+                        <img src="https://readdy.ai/api/search-image?query=comic%20book%20page%20with%20dynamic%20action%20sequence%2C%20superhero%20with%20glowing%20blue%20energy%20powers%20fighting%20shadowy%20creatures%2C%20dark%20atmospheric%20panels%20with%20dramatic%20lighting%2C%20professional%20comic%20book%20art%20style%2C%20highly%20detailed&width=800&height=600&seq=3&orientation=landscape" alt="Comic Preview" class="w-full h-auto">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0f14] to-transparent flex items-end justify-center pb-8">
+                            <button class="bg-primary text-white px-6 py-3 !rounded-button glow-button whitespace-nowrap">
+                                <i class="ri-book-open-line ri-lg mr-2"></i> Flip Through Preview
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preview & Covers -->
+    <section id="preview" class="py-20 bg-[#131320]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl font-bold mb-4">Preview & Covers</h2>
+                <div class="w-24 h-1 bg-primary mx-auto"></div>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">
+                    Explore the stunning artwork and variant covers for Arbiter #1, featuring incredible illustrations from top artists in the industry.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="comic-preview rounded-lg overflow-hidden glow-border">
+                    <div class="bg-[#0f0f14] p-4 border-b border-primary/30">
+                        <h3 class="title-font text-xl font-bold">Cover A by Denio</h3>
+                    </div>
+                    <img src="https://readdy.ai/api/search-image?query=superhero%20comic%20book%20cover%20with%20male%20protagonist%20with%20glowing%20blue%20energy%20powers%2C%20dark%20atmospheric%20background%20with%20cosmic%20elements%2C%20professional%20comic%20book%20art%20style%20by%20a%20master%20artist%2C%20highly%20detailed%20illustration&width=600&height=800&seq=4&orientation=portrait" alt="Cover A" class="w-full h-auto">
+                </div>
+                
+                <div class="comic-preview rounded-lg overflow-hidden glow-border">
+                    <div class="bg-[#0f0f14] p-4 border-b border-primary/30">
+                        <h3 class="title-font text-xl font-bold">Cover B by Adam Kmiolek</h3>
+                    </div>
+                    <img src="https://readdy.ai/api/search-image?query=alternative%20superhero%20comic%20book%20cover%20with%20stylized%20male%20protagonist%20with%20blue%20energy%20powers%2C%20cosmic%20threats%20in%20background%2C%20reality%20cracks%2C%20dark%20atmospheric%20style%2C%20professional%20comic%20book%20art%20by%20a%20master%20artist%2C%20highly%20detailed%20illustration&width=600&height=800&seq=5&orientation=portrait" alt="Cover B" class="w-full h-auto">
+                </div>
+            </div>
+            
+            <div class="mt-16">
+                <h3 class="title-font text-2xl font-bold mb-8 text-center">Interior Preview Pages</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="comic-preview rounded-lg overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=comic%20book%20interior%20page%20with%20dynamic%20action%20sequence%2C%20superhero%20with%20blue%20energy%20powers%2C%20dark%20atmospheric%20panels%20with%20dramatic%20lighting%2C%20professional%20comic%20book%20art%20style%2C%20highly%20detailed&width=500&height=700&seq=6&orientation=portrait" alt="Interior Page 1" class="w-full h-auto">
+                    </div>
+                    <div class="comic-preview rounded-lg overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=comic%20book%20interior%20page%20with%20character%20close-up%20and%20dialogue%2C%20superhero%20discovering%20powers%2C%20dark%20atmospheric%20panels%20with%20glowing%20blue%20energy%20effects%2C%20professional%20comic%20book%20art%20style%2C%20highly%20detailed&width=500&height=700&seq=7&orientation=portrait" alt="Interior Page 2" class="w-full h-auto">
+                    </div>
+                    <div class="comic-preview rounded-lg overflow-hidden">
+                        <img src="https://readdy.ai/api/search-image?query=comic%20book%20interior%20page%20with%20cosmic%20threat%20reveal%2C%20reality%20cracks%20with%20creatures%20emerging%2C%20dark%20atmospheric%20panels%20with%20blue%20energy%20effects%2C%20professional%20comic%20book%20art%20style%2C%20highly%20detailed&width=500&height=700&seq=8&orientation=portrait" alt="Interior Page 3" class="w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Creator -->
+    <section id="creator" class="py-20 bg-[#0f0f14] crack-overlay">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl font-bold mb-4">Meet the Creator</h2>
+                <div class="w-24 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="w-full md:w-1/3 mb-10 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-primary glow-border">
+                            <img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20male%20comic%20book%20creator%20in%20his%20studio%2C%20creative%20workspace%20with%20art%20supplies%2C%20warm%20lighting%2C%20professional%20photography%2C%20highly%20detailed&width=500&height=500&seq=9&orientation=squarish" alt="Vinny Andreano" class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-[#131320] px-6 py-2 rounded-full border border-primary/30">
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
+                                    <i class="ri-youtube-fill ri-lg"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
+                                    <i class="ri-twitter-x-fill ri-lg"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
+                                    <i class="ri-instagram-fill ri-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-2/3 md:pl-16">
+                    <h3 class="title-font text-3xl font-bold mb-4">Vinny Andreano</h3>
+                    <p class="text-gray-400 mb-2">Writer • Creator • Publisher</p>
+                    
+                    <div class="h-1 w-20 bg-primary mb-6"></div>
+                    
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Vinny Andreano is a passionate storyteller with over a decade of experience in the comic book industry. After working with major publishers, he decided to create his own universe with Arbiter – a story that has been brewing in his mind for years.
+                    </p>
+                    
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        "Arbiter represents everything I love about comics – high-stakes action, supernatural elements, and characters facing impossible odds. I'm thrilled to finally share this world with readers and can't wait for you to meet Chris and discover the mysteries of the Arbiters."
+                    </p>
+                    
+                    <div class="bg-[#131320] p-6 rounded-lg border border-primary/30">
+                        <h4 class="title-font text-xl font-bold mb-4">Watch Creator Introduction</h4>
+                        <div class="aspect-w-16 aspect-h-9 bg-[#0f0f14] rounded-lg flex items-center justify-center">
+                            <div class="w-20 h-20 flex items-center justify-center rounded-full bg-primary/20 border border-primary cursor-pointer">
+                                <i class="ri-play-fill ri-2x text-primary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Tiers -->
+    <section id="support" class="py-20 bg-[#131320]">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl font-bold mb-4">Support Tiers</h2>
+                <div class="w-24 h-1 bg-primary mx-auto"></div>
+                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">
+                    Join the campaign and choose the perfect tier to support Arbiter #1. Each tier offers exclusive rewards to thank you for bringing this comic to life.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Digital Tier -->
+                <div class="tier-card bg-[#0f0f14] rounded-lg overflow-hidden">
+                    <div class="p-6 border-b border-primary/30">
+                        <h3 class="title-font text-2xl font-bold mb-2">Digital Edition</h3>
+                        <p class="text-3xl font-bold text-primary">$10</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Digital copy of Arbiter #1</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Exclusive digital wallpaper</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Name in digital backers section</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-[#131320]">
+                        <button class="w-full bg-primary text-white py-3 !rounded-button glow-button whitespace-nowrap">
+                            Select Tier
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Print Tier -->
+                <div class="tier-card bg-[#0f0f14] rounded-lg overflow-hidden relative transform scale-105 z-10">
+                    <div class="absolute top-0 right-0 bg-primary text-white px-4 py-1 text-sm font-bold">
+                        POPULAR
+                    </div>
+                    <div class="p-6 border-b border-primary/30">
+                        <h3 class="title-font text-2xl font-bold mb-2">Print Edition</h3>
+                        <p class="text-3xl font-bold text-primary">$25</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Physical copy of Arbiter #1</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Digital copy of Arbiter #1</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Exclusive digital wallpaper</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Name in print backers section</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-[#131320]">
+                        <button class="w-full bg-primary text-white py-3 !rounded-button glow-button pulse-animation whitespace-nowrap">
+                            Select Tier
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Collector Tier -->
+                <div class="tier-card bg-[#0f0f14] rounded-lg overflow-hidden">
+                    <div class="p-6 border-b border-primary/30">
+                        <h3 class="title-font text-2xl font-bold mb-2">Collector's Edition</h3>
+                        <p class="text-3xl font-bold text-primary">$50</p>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Signed physical copy of Arbiter #1</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Both variant covers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Exclusive 11x17 art print</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="w-6 h-6 flex items-center justify-center text-primary mr-2">
+                                    <i class="ri-check-line ri-lg"></i>
+                                </div>
+                                <span>Digital copy and wallpapers</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-[#131320]">
+                        <button class="w-full bg-primary text-white py-3 !rounded-button glow-button whitespace-nowrap">
+                            Select Tier
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <p class="text-gray-400 mb-6">
+                    Looking for something more exclusive? Check out our limited special tiers!
+                </p>
+                <button class="bg-transparent border border-primary text-primary px-8 py-3 !rounded-button hover:bg-primary/10 transition-colors whitespace-nowrap">
+                    View Special Tiers
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lore & Worldbuilding -->
+    <section id="lore" class="py-20 bg-[#0f0f14]" style="background-image: url('https://readdy.ai/api/search-image?query=abstract%20cosmic%20background%20with%20glowing%20blue%20energy%20cracks%2C%20dark%20mysterious%20atmosphere%20with%20subtle%20reality%20fractures%2C%20professional%20digital%20art%2C%20highly%20detailed&width=1920&height=1080&seq=10&orientation=landscape'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="absolute inset-0 bg-[#0f0f14]/80"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl font-bold mb-4">Lore & Worldbuilding</h2>
+                <div class="w-24 h-1 bg-primary mx-auto"></div>
+                <p class="text-gray-300 mt-6 max-w-2xl mx-auto italic text-xl">
+                    "Everything you know about reality is about to be questioned..."
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-[#131320]/80 backdrop-blur-sm p-8 rounded-lg border border-primary/30">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/20 rounded-full mb-6">
+                        <i class="ri-user-star-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="title-font text-2xl font-bold mb-4">The Arbiters</h3>
+                    <p class="text-gray-300 mb-4">
+                        Throughout history, special individuals have been chosen to serve as Arbiters – guardians tasked with maintaining the barriers between dimensions.
+                    </p>
+                    <p class="text-gray-300">
+                        Born with unique energy signatures, Arbiters can sense and seal reality fractures before they become dangerous rifts.
+                    </p>
+                </div>
+                
+                <div class="bg-[#131320]/80 backdrop-blur-sm p-8 rounded-lg border border-primary/30">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/20 rounded-full mb-6">
+                        <i class="ri-ghost-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="title-font text-2xl font-bold mb-4">The Breach</h3>
+                    <p class="text-gray-300 mb-4">
+                        Our reality is under constant threat from entities existing in parallel dimensions – creatures that seek to invade and consume our world.
+                    </p>
+                    <p class="text-gray-300">
+                        These beings exploit weaknesses in reality's fabric, creating breaches that allow them passage into our dimension.
+                    </p>
+                </div>
+                
+                <div class="bg-[#131320]/80 backdrop-blur-sm p-8 rounded-lg border border-primary/30">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary/20 rounded-full mb-6">
+                        <i class="ri-group-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="title-font text-2xl font-bold mb-4">The Order</h3>
+                    <p class="text-gray-300 mb-4">
+                        A secretive organization that has monitored reality breaches for centuries, identifying and training potential Arbiters.
+                    </p>
+                    <p class="text-gray-300">
+                        With the recent increase in breach activity, The Order faces its greatest challenge – and Chris may be their last hope.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-[#131320]/80 backdrop-blur-sm p-8 rounded-lg border border-primary/30">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-2/3 mb-8 md:mb-0 md:pr-10">
+                        <h3 class="title-font text-2xl font-bold mb-4">The Growing Threat</h3>
+                        <p class="text-gray-300 mb-4">
+                            Recent years have seen an unprecedented increase in reality fractures across the globe. What was once a rare occurrence now happens with alarming frequency, suggesting a coordinated effort from the other side.
+                        </p>
+                        <p class="text-gray-300 mb-6">
+                            As Chris begins to understand his powers, he discovers that someone – or something – is deliberately weakening the barriers between worlds, and the creatures coming through are just the beginning.
+                        </p>
+                        <div class="flex items-center">
+                            <div class="flex-1 h-1 bg-primary/30"></div>
+                            <p class="px-4 text-primary font-bold">Issue #1 is just the beginning</p>
+                            <div class="flex-1 h-1 bg-primary/30"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-1/3">
+                        <img src="https://readdy.ai/api/search-image?query=mysterious%20shadowy%20creature%20emerging%20from%20a%20glowing%20blue%20reality%20crack%2C%20dark%20atmospheric%20lighting%2C%20cosmic%20horror%20elements%2C%20professional%20digital%20art%2C%20highly%20detailed%20illustration&width=500&height=600&seq=11&orientation=portrait" alt="Creature from Beyond" class="w-full h-auto rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-[#131320]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="title-font text-4xl font-bold mb-6">Help Bring Chris' Story to Life</h2>
+                <p class="text-xl text-gray-300 mb-10">
+                    Be part of the first chapter of something epic. Your support makes this comic possible and helps launch an exciting new universe of stories.
+                </p>
+                
+                <div class="bg-[#0f0f14] p-8 rounded-lg border border-primary/30 mb-10">
+                    <div class="flex flex-col md:flex-row items-center justify-between">
+                        <div class="w-full md:w-auto mb-6 md:mb-0">
+                            <p class="text-2xl font-bold mb-2">Campaign Progress</p>
+                            <p class="text-4xl font-bold text-primary">$12,458 <span class="text-gray-400 text-lg">of $20,000</span></p>
+                        </div>
+                        
+                        <div class="w-full md:w-1/2">
+                            <div class="w-full bg-gray-700 h-4 rounded-full overflow-hidden">
+                                <div class="bg-primary h-full rounded-full" style="width: 62%;"></div>
+                            </div>
+                            <div class="flex justify-between mt-2 text-sm text-gray-400">
+                                <span>62% Funded</span>
+                                <span>247 Backers</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="bg-primary text-white px-10 py-4 !rounded-button glow-button text-xl font-bold pulse-animation whitespace-nowrap">
+                    Back the Comic Now
+                </button>
+                
+                <p class="text-gray-400 mt-6">
+                    Campaign ends on May 18, 2025
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-[#0f0f14] crack-overlay">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-[#131320] p-8 rounded-lg border border-primary/30">
+                    <div class="text-center mb-8">
+                        <h3 class="title-font text-2xl font-bold mb-4">Stay Updated</h3>
+                        <p class="text-gray-400">
+                            Subscribe to our newsletter for exclusive updates, behind-the-scenes content, and special offers.
+                        </p>
+                    </div>
+                    
+                    <form class="flex flex-col sm:flex-row gap-4">
+                        <input type="email" placeholder="Your email address" class="flex-1 bg-[#0f0f14] border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-primary">
+                        <button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button glow-button whitespace-nowrap">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-[#0f0f14] border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="title-font text-2xl font-bold text-white flex items-center">
+                        <span class="text-primary hero-glow">ARBITER</span>
+                    </a>
+                    <p class="text-gray-400 mt-2">
+                        A Pulse-Pounding Supernatural Comic
+                    </p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-youtube-fill ri-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-twitter-x-fill ri-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-instagram-fill ri-lg"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-primary transition-colors">
+                        <i class="ri-facebook-fill ri-lg"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                        © 2025 Arbiter Comics. All rights reserved.
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="#" class="text-gray-400 hover:text-primary text-sm transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-primary text-sm transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-primary text-sm transition-colors">Contact</a>
+                        <a href="#" class="text-gray-400 hover:text-primary text-sm transition-colors">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Back Button -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button class="bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center glow-button pulse-animation">
+            <i class="ri-rocket-line ri-lg"></i>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Countdown Timer
+            function updateCountdown() {
+                const endDate = new Date('May 18, 2025 23:59:59').getTime();
+                const now = new Date().getTime();
+                const distance = endDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.querySelectorAll('.countdown-item span:first-child')[0].textContent = days;
+                document.querySelectorAll('.countdown-item span:first-child')[1].textContent = hours;
+                document.querySelectorAll('.countdown-item span:first-child')[2].textContent = minutes;
+                document.querySelectorAll('.countdown-item span:first-child')[3].textContent = seconds;
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuButton = document.querySelector('.ri-menu-line').parentElement;
+            const mobileMenu = document.createElement('div');
+            mobileMenu.className = 'fixed inset-0 bg-[#0f0f14]/95 z-50 flex flex-col items-center justify-center transform transition-transform duration-300 translate-x-full';
+            mobileMenu.innerHTML = `
+                <div class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center text-white cursor-pointer">
+                    <i class="ri-close-line ri-lg"></i>
+                </div>
+                <div class="flex flex-col items-center space-y-6">
+                    <a href="#about" class="text-2xl text-white hover:text-primary transition-colors">About</a>
+                    <a href="#preview" class="text-2xl text-white hover:text-primary transition-colors">Preview</a>
+                    <a href="#creator" class="text-2xl text-white hover:text-primary transition-colors">Creator</a>
+                    <a href="#support" class="text-2xl text-white hover:text-primary transition-colors">Support</a>
+                    <a href="#lore" class="text-2xl text-white hover:text-primary transition-colors">Lore</a>
+                    <button class="mt-4 bg-primary text-white px-8 py-3 !rounded-button glow-button whitespace-nowrap">Back the Comic</button>
+                </div>
+            `;
+            document.body.appendChild(mobileMenu);
+            
+            menuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('translate-x-full');
+            });
+            
+            mobileMenu.querySelector('.ri-close-line').parentElement.addEventListener('click', function() {
+                mobileMenu.classList.add('translate-x-full');
+            });
+            
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('translate-x-full');
+                });
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Floating back button scroll to top
+            const backButton = document.querySelector('.fixed.bottom-8.right-8 button');
+            backButton.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
